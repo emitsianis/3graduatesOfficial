@@ -26,6 +26,22 @@ class Posts extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
+              <iframe
+                title="123"
+                width="853"
+                height="480"
+                src="https://www.youtube.com/embed/BQnu6Yhq9MM"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
               <PostForm />
               {postContent}
             </div>
