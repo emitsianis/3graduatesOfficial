@@ -168,24 +168,29 @@ class CreateProfile extends Component {
     //Select options for status
     const options = [
       {
-        label: "* Select Professional Status",
+        label: "* Select Status",
         value: 0
       },
       {
-        label: "Developer",
-        value: "Developer"
+        label: "Working",
+        value: "Working"
       },
       {
-        label: "Junior Developer",
-        value: "Junior Developer"
+        label: "Chilling",
+        value: "Chilling"
       },
       {
-        label: "Senior Developer",
-        value: "Senior Developer"
+        label: "Dancing",
+        value: "Dancing"
       },
       {
-        label: "Manager",
-        value: "Manager"
+        label: "Revolutionary",
+        value: "Revolutionary"
+      },
+      {
+        label:
+          "Finding excuses to not get a job (only use this if you are Zeik)",
+        value: "Finding excuses to not get a job"
       },
       {
         label: "Student or Learning",
@@ -196,8 +201,8 @@ class CreateProfile extends Component {
         value: "Instructor or Teacher"
       },
       {
-        label: "Intern",
-        value: "Intern"
+        label: "In a relationship",
+        value: "In a relationship"
       },
       {
         label: "Other",
@@ -263,7 +268,7 @@ class CreateProfile extends Component {
                   value={this.state.skills}
                   onChange={this.onChange}
                   error={errors.skills}
-                  info="Use comma separated values (HTML, CSS, JS) etc."
+                  info="Use comma separated values (tipota, kantipota, kankantipota) etc."
                 />
                 <TextAreaFieldGroup
                   placeholder="Short Bio"
