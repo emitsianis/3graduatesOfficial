@@ -21,7 +21,7 @@ class Landing extends Component {
                   <h1 className="display-3 mb-4">3graduatesOfficial</h1>
                   <p className="lead">
                     {" "}
-                    Create a profile, share posts and ahng around
+                    Create a profile, share posts and hang around
                   </p>
                   <hr />
                   <Link to="/register" className="btn btn-lg btn-info mr-2">
