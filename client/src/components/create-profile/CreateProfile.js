@@ -49,7 +49,6 @@ class CreateProfile extends Component {
       location: this.state.location,
       status: this.state.status,
       skills: this.state.skills,
-      githubusername: this.state.githubusername,
       bio: this.state.bio,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
@@ -120,24 +119,29 @@ class CreateProfile extends Component {
     //Select options for status
     const options = [
       {
-        label: "* Select Professional Status",
+        label: "* Select Status",
         value: 0
       },
       {
-        label: "Developer",
-        value: "Developer"
+        label: "Working",
+        value: "Working"
       },
       {
-        label: "Junior Developer",
-        value: "Junior Developer"
+        label: "Chilling",
+        value: "Chilling"
       },
       {
-        label: "Senior Developer",
-        value: "Senior Developer"
+        label: "Dancing",
+        value: "Dancing"
       },
       {
-        label: "Manager",
-        value: "Manager"
+        label: "Revolutionary",
+        value: "Revolutionary"
+      },
+      {
+        label:
+          "Finding excuses to not get a job (only use this if you are Zeik)",
+        value: "Finding excuses to not get a job"
       },
       {
         label: "Student or Learning",
@@ -148,8 +152,8 @@ class CreateProfile extends Component {
         value: "Instructor or Teacher"
       },
       {
-        label: "Intern",
-        value: "Intern"
+        label: "In a relationship",
+        value: "In a relationship"
       },
       {
         label: "Other",
@@ -183,7 +187,7 @@ class CreateProfile extends Component {
                   onChange={this.onChange}
                   error={errors.status}
                   options={options}
-                  info="Give us an idea about your professional status"
+                  info="Give us an idea about your status"
                 />
                 <TextFieldGroup
                   placeholder="Company"
@@ -215,15 +219,7 @@ class CreateProfile extends Component {
                   value={this.state.skills}
                   onChange={this.onChange}
                   error={errors.skills}
-                  info="Use comma separated values (HTML, CSS, JS) etc."
-                />
-                <TextFieldGroup
-                  placeholder="Github Username"
-                  name="githubusername"
-                  value={this.state.githubusername}
-                  onChange={this.onChange}
-                  error={errors.githubusername}
-                  info="Include this if you want to show your latest repos and a github link"
+                  info="Use comma separated values (tipota, kantipota, kankantipota) etc."
                 />
                 <TextAreaFieldGroup
                   placeholder="Short Bio"
