@@ -16,7 +16,7 @@ export default function(state = initialState, action) {
           ...state,
           isAuthenticated: true,
           user: action.payload,
-          users: state.users.concat(action.payload.name)
+          users: [...state.users, action.payload.name]
         };
       } else {
         return {
