@@ -30,7 +30,7 @@ export const loginUser = userData => dispatch => {
       //Decode token to get user data
       const decoded = jwt_decode(token);
       //Set current user
-      dispatch(setCurrentUser(decoded));
+      dispatch(setCurrentUser(decoded, 1));
     })
     .catch(err => {
       dispatch({
@@ -41,19 +41,22 @@ export const loginUser = userData => dispatch => {
 };
 
 //Set logged in user
-export const setCurrentUser = decoded => {
+export const setCurrentUser = (decoded, lol) => {
   return {
     type: SET_CURRENT_USER,
-    payload: decoded
+    payload: decoded,
+    lol: lol
   };
 };
 
 //Log user out
 export const logoutUser = () => dispatch => {
+  const token = localStorage.getItem("jwtToken");
+  const decoded = jwt_decode(token);
   //Remove token from local storage
   localStorage.removeItem("jwtToken");
   //Remove auth header
   setAuthToken(false);
   //Set current user to {}
-  dispatch(setCurrentUser({}));
+  dispatch(setCurrentUser(decoded, 0));
 };

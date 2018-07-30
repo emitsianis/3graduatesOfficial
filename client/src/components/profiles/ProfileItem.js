@@ -16,6 +16,13 @@ class ProfileItem extends Component {
           <div className="col-lg-6 col-md-4 col-8">
             <h3>{profile.user.name}</h3>
             <p>
+              {this.props.users.indexOf(profile.user.name) > -1 ? (
+                <span style={{ color: "green" }}>Online</span>
+              ) : (
+                <span style={{ color: "red" }}>Offline</span>
+              )}
+            </p>
+            <p>
               {profile.status}{" "}
               {isEmpty(profile.company) ? null : (
                 <span>at {profile.company}</span>
@@ -47,7 +54,8 @@ class ProfileItem extends Component {
 }
 
 ProfileItem.propTypes = {
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired
 };
 
 export default ProfileItem;
