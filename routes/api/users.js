@@ -109,6 +109,22 @@ router.post("/login", (req, res) => {
             });
           }
         );
+
+        Profile.findOne({ user: payload.id }, (err, profile) => {
+          if (err) {
+            console.log(err);
+          }
+
+          profile.isOnline = true;
+          profile.save(err => {
+            if (err) {
+              console.log(err);
+              return;
+            } else {
+              return;
+            }
+          });
+        });
       } else {
         errors.password = "Password inncorrect";
         return res.status(400).json(errors);
@@ -116,6 +132,31 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+//@route  GET api/users/logout
+//@desc   logout current user
+//@access private
+router.get(
+  "/logout",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }, (err, profile) => {
+      if (err) {
+        console.log(err);
+      }
+
+      profile.isOnline = false;
+      profile.save(err => {
+        if (err) {
+          return res.status(400).json(err);
+        } else {
+          return;
+        }
+      });
+      res.json({ msg: "successful logout" });
+    });
+  }
+);
 
 //@route  GET api/users/current
 //@desc   return current user

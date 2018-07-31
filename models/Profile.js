@@ -31,6 +31,10 @@ const profileSchema = new Schema({
   bio: {
     type: String
   },
+  isOnline: {
+    type: Boolean,
+    default: false
+  },
   experience: [
     {
       title: {
