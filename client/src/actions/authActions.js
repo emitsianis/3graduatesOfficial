@@ -61,9 +61,6 @@ export const logoutUser = () => dispatch => {
       dispatch(setCurrentUser({}));
     })
     .catch(err => {
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      });
+      console.log(err);
     });
 };

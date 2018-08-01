@@ -150,10 +150,9 @@ router.get(
         if (err) {
           return res.status(400).json(err);
         } else {
-          return;
+          return res.json({ msg: "successful logout" });
         }
       });
-      res.json({ msg: "successful logout" });
     });
   }
 );
