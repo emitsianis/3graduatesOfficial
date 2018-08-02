@@ -43,6 +43,8 @@ if (localStorage.jwtToken) {
     //Logout user
     store.dispatch(logoutUser());
     localStorage.removeItem("jwtToken");
+    setAuthToken(false);
+    dispatch(setCurrentUser({}));
     //Clear current profile
     store.dispatch(clearCurrentProfile());
     //Redirect to login
