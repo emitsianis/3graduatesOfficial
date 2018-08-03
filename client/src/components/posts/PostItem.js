@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
 import { deletePost, addLike, removeLike } from "../../actions/postActions";
+import Moment from "react-moment";
 
 class PostItem extends Component {
   onDeleteClick(id) {
@@ -45,6 +46,9 @@ class PostItem extends Component {
             <p className="text-center">{post.name}</p>
           </div>
           <div className="col-md-10">
+            <p className="text-muted">
+              <Moment format="DD/MM/YYYY - HH:mm">{post.date}</Moment>
+            </p>
             <p className="lead">{post.text}</p>
             {showActions ? (
               <span>

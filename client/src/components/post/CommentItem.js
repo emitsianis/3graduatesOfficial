@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { deleteComment } from "../../actions/postActions";
+import Moment from "react-moment";
 
 class CommentItem extends Component {
   onDeleteClick(postId, commentId) {
@@ -26,6 +27,9 @@ class CommentItem extends Component {
             <p className="text-center">{comment.name}</p>
           </div>
           <div className="col-md-10">
+            <p className="text-muted">
+              <Moment format="DD/MM/YYYY - HH:mm">{comment.date}</Moment>
+            </p>
             <p className="lead">{comment.text}</p>
             {comment.user === auth.user.id ? (
               <button
