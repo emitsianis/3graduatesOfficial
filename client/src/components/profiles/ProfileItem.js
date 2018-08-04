@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import isEmpty from "../../validation/is-empty";
+import Moment from "react-moment";
 
 class ProfileItem extends Component {
   render() {
@@ -19,9 +20,21 @@ class ProfileItem extends Component {
               {profile.isOnline ? (
                 <span style={{ color: "green" }}>ONLINE</span>
               ) : (
-                <span style={{ color: "red" }}>OFFLINE</span>
+                <span>
+                  {isEmpty(profile.lastLogin) ? (
+                    <span style={{ color: "gray" }}>OFFLINE</span>
+                  ) : (
+                    <span style={{ color: "gray" }}>
+                      OFFLINE - Last seen at{" "}
+                      <Moment format="DD/MM/YYYY - HH:mm">
+                        {profile.lastLogin}
+                      </Moment>
+                    </span>
+                  )}
+                </span>
               )}
             </p>
+
             <p>
               {profile.status}{" "}
               {isEmpty(profile.company) ? null : (

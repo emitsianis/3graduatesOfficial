@@ -35,6 +35,9 @@ const profileSchema = new Schema({
     type: Boolean,
     default: false
   },
+  lastLogin: {
+    type: Date
+  },
   experience: [
     {
       title: {

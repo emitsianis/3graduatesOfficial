@@ -146,6 +146,7 @@ router.get(
       }
 
       profile.isOnline = false;
+      profile.lastLogin = Date.now();
       profile.save(err => {
         if (err) {
           return res.status(400).json(err);
