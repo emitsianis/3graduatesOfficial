@@ -64,3 +64,14 @@ export const logoutUser = () => dispatch => {
       console.log(err);
     });
 };
+
+export const setOffline = () => {
+  axios
+    .get("/api/users/logout")
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};

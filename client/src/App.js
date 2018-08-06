@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
-import { setCurrentUser, logoutUser } from "./actions/authActions";
+import { setCurrentUser, setOffline } from "./actions/authActions";
 import { clearCurrentProfile } from "./actions/profileActions";
 
 import { Provider } from "react-redux";
@@ -41,6 +41,7 @@ if (localStorage.jwtToken) {
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
     //Logout user
+    setOffline();
     // store.dispatch(logoutUser());
     localStorage.removeItem("jwtToken");
     setAuthToken(false);
