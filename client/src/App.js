@@ -41,14 +41,14 @@ if (localStorage.jwtToken) {
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
     //Logout user
-    store.dispatch(logoutUser());
+    // store.dispatch(logoutUser());
     localStorage.removeItem("jwtToken");
     setAuthToken(false);
     store.dispatch(setCurrentUser({}));
     //Clear current profile
     store.dispatch(clearCurrentProfile());
     //Redirect to login
-    //window.location.href = "/login";
+    window.location.href = "/login";
   }
 }
 

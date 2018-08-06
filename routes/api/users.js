@@ -71,6 +71,7 @@ router.post("/register", (req, res) => {
 //@desc   login user / return JWT
 //@access public
 router.post("/login", (req, res) => {
+  let id;
   const { errors, isValid } = validateLoginInput(req.body);
 
   if (!isValid) {
@@ -89,7 +90,7 @@ router.post("/login", (req, res) => {
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
         //User matched
-
+        id = user.id;
         //Create JWT payload
         const payload = {
           id: user.id,
@@ -131,6 +132,22 @@ router.post("/login", (req, res) => {
       }
     });
   });
+
+  setTimeout(() => {
+    Profile.findOne({ user: id }, (err, profile) => {
+      if (err) {
+        console.log(err);
+      }
+
+      profile.isOnline = false;
+      profile.lastLogin = Date.now();
+      profile.save(err => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    });
+  }, 3610000); //3600000
 });
 
 //@route  GET api/users/logout
