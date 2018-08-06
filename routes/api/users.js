@@ -95,7 +95,8 @@ router.post("/login", (req, res) => {
         const payload = {
           id: user.id,
           name: user.name,
-          avatar: user.avatar
+          avatar: user.avatar,
+          newPosts: user.newPosts
         };
 
         //Sign token
@@ -116,7 +117,7 @@ router.post("/login", (req, res) => {
             console.log(err);
           }
 
-          profile.isOnline = true;
+          profile.lastLogin = Date.now();
           profile.save(err => {
             if (err) {
               console.log(err);
@@ -132,48 +133,7 @@ router.post("/login", (req, res) => {
       }
     });
   });
-
-  setTimeout(() => {
-    Profile.findOne({ user: id }, (err, profile) => {
-      if (err) {
-        console.log(err);
-      }
-
-      profile.isOnline = false;
-      profile.lastLogin = Date.now();
-      profile.save(err => {
-        if (err) {
-          console.log(err);
-        }
-      });
-    });
-  }, 3610000); //3600000
 });
-
-//@route  GET api/users/logout
-//@desc   logout current user
-//@access private
-router.get(
-  "/logout",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Profile.findOne({ user: req.user.id }, (err, profile) => {
-      if (err) {
-        console.log(err);
-      }
-
-      profile.isOnline = false;
-      profile.lastLogin = Date.now();
-      profile.save(err => {
-        if (err) {
-          return res.status(400).json(err);
-        } else {
-          return res.json({ msg: "successful logout" });
-        }
-      });
-    });
-  }
-);
 
 //@route  GET api/users/current
 //@desc   return current user
@@ -187,6 +147,19 @@ router.get(
       name: req.user.name,
       email: req.user.email
     });
+  }
+);
+
+router.get(
+  "/clearnewposts",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findById(req.user.id)
+      .then(user => {
+        user.newPosts = 0;
+        user.save();
+      })
+      .catch(err => console.log(err));
   }
 );
 

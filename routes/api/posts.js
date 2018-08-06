@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 
 //Load post model
+const User = require("../../models/User");
 const Post = require("../../models/Post");
 const Profile = require("../../models/Profile");
 
@@ -59,6 +60,17 @@ router.post(
     if (!isValid) {
       return res.status(400).json(errors);
     }
+
+    User.find()
+      .then(users =>
+        users.forEach(user => {
+          if (user._id != req.user.id) {
+            user.newPosts++;
+            user.save();
+          }
+        })
+      )
+      .catch(err => console.log(err));
 
     const newPost = new Post({
       text: req.body.text,

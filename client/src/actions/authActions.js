@@ -38,6 +38,7 @@ export const loginUser = userData => dispatch => {
         payload: err.response.data
       });
     });
+  // clearNewPosts();
 };
 
 //Set logged in user
@@ -50,28 +51,18 @@ export const setCurrentUser = decoded => {
 
 //Log user out
 export const logoutUser = () => dispatch => {
-  axios
-    .get("/api/users/logout")
-    .then(res => {
-      //Remove token from local storage
-      localStorage.removeItem("jwtToken");
-      //Remove auth header
-      setAuthToken(false);
-      //Set current user to {}
-      dispatch(setCurrentUser({}));
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  clearNewPosts();
+  //Remove token from local storage
+  localStorage.removeItem("jwtToken");
+  //Remove auth header
+  setAuthToken(false);
+  //Set current user to {}
+  dispatch(setCurrentUser({}));
 };
 
-export const setOffline = () => {
+export const clearNewPosts = () => {
   axios
-    .get("/api/users/logout")
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    .get("api/users/clearnewposts")
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
 };

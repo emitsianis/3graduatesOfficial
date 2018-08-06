@@ -21,6 +21,10 @@ const userSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  newPosts: {
+    type: Number,
+    default: 0
   }
 });
 

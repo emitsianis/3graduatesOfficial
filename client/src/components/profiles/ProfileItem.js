@@ -17,20 +17,14 @@ class ProfileItem extends Component {
           <div className="col-lg-6 col-md-4 col-8">
             <h3>{profile.user.name}</h3>
             <p>
-              {profile.isOnline ? (
-                <span style={{ color: "green" }}>ONLINE</span>
+              {isEmpty(profile.lastLogin) ? (
+                <span style={{ color: "gray" }}>Last login before update</span>
               ) : (
-                <span>
-                  {isEmpty(profile.lastLogin) ? (
-                    <span style={{ color: "gray" }}>OFFLINE</span>
-                  ) : (
-                    <span style={{ color: "gray" }}>
-                      OFFLINE - Last seen at{" "}
-                      <Moment format="DD/MM/YYYY - HH:mm">
-                        {profile.lastLogin}
-                      </Moment>
-                    </span>
-                  )}
+                <span style={{ color: "gray" }}>
+                  Last login at{" "}
+                  <Moment format="DD/MM/YYYY - HH:mm">
+                    {profile.lastLogin}
+                  </Moment>
                 </span>
               )}
             </p>
