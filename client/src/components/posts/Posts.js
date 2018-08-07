@@ -5,8 +5,13 @@ import PostForm from "./PostForm";
 import PostFeed from "./PostFeed";
 import Spinner from "../common/Spinner";
 import { getPosts } from "../../actions/postActions";
+import { clearNewPosts } from "../../actions/authActions";
 
 class Posts extends Component {
+  componentWillMount() {
+    this.props.clearNewPosts();
+  }
+
   componentDidMount() {
     this.props.getPosts();
   }
@@ -38,7 +43,8 @@ class Posts extends Component {
 
 Posts.propTypes = {
   post: PropTypes.object.isRequired,
-  getPosts: PropTypes.func.isRequired
+  getPosts: PropTypes.func.isRequired,
+  clearNewPosts: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -47,5 +53,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getPosts }
+  { getPosts, clearNewPosts }
 )(Posts);

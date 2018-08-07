@@ -2,7 +2,7 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 
-import { GET_ERRORS, SET_CURRENT_USER } from "./types";
+import { GET_ERRORS, SET_CURRENT_USER, CLEAR_NOTIFICATIONS } from "./types";
 
 //Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -38,7 +38,6 @@ export const loginUser = userData => dispatch => {
         payload: err.response.data
       });
     });
-  // clearNewPosts();
 };
 
 //Set logged in user
@@ -49,9 +48,15 @@ export const setCurrentUser = decoded => {
   };
 };
 
+export const clearNotifications = () => {
+  return {
+    type: CLEAR_NOTIFICATIONS
+  };
+};
+
 //Log user out
 export const logoutUser = () => dispatch => {
-  clearNewPosts();
+  //clearNewPosts();
   //Remove token from local storage
   localStorage.removeItem("jwtToken");
   //Remove auth header
@@ -60,7 +65,8 @@ export const logoutUser = () => dispatch => {
   dispatch(setCurrentUser({}));
 };
 
-export const clearNewPosts = () => {
+export const clearNewPosts = () => dispatch => {
+  dispatch(clearNotifications());
   axios
     .get("api/users/clearnewposts")
     .then(res => console.log(res))
