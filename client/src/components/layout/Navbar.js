@@ -20,12 +20,14 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/feed">
-            Post Feed<span
-              className="badge badge-danger"
-              style={{ marginLeft: "2px" }}
-            >
-              {newPosts}
-            </span>
+            Post Feed{newPosts > 0 ? (
+              <span
+                className="badge badge-danger"
+                style={{ marginLeft: "2px" }}
+              >
+                {newPosts}
+              </span>
+            ) : null}
           </Link>
         </li>
         <li className="nav-item">

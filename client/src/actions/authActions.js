@@ -56,7 +56,7 @@ export const clearNotifications = () => {
 
 //Log user out
 export const logoutUser = () => dispatch => {
-  //clearNewPosts();
+  logoutClear();
   //Remove token from local storage
   localStorage.removeItem("jwtToken");
   //Remove auth header
@@ -67,6 +67,13 @@ export const logoutUser = () => dispatch => {
 
 export const clearNewPosts = () => dispatch => {
   dispatch(clearNotifications());
+  axios
+    .get("api/users/clearnewposts")
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+};
+
+export const logoutClear = () => {
   axios
     .get("api/users/clearnewposts")
     .then(res => console.log(res))
