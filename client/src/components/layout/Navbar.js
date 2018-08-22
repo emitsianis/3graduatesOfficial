@@ -20,7 +20,8 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/feed">
-            Post Feed{newPosts > 0 ? (
+            Post Feed
+            {newPosts > 0 ? (
               <span
                 className="badge badge-danger"
                 style={{ marginLeft: "2px" }}
@@ -89,7 +90,7 @@ class Navbar extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/profiles">
                   {" "}
-                  Alania
+                  Members
                 </Link>
               </li>
             </ul>

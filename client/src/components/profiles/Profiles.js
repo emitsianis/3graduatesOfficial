@@ -32,7 +32,7 @@ class Profiles extends Component {
           <div className="row">
             <div className="col-md-12">
               <h1 className="display-4 text-center text-light">
-                List of Alania
+                List of Members
               </h1>
               <p className="lead text-center">
                 Browse and connect with dudes/girls
