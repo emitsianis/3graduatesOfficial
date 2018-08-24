@@ -14,8 +14,8 @@ class Experience extends Component {
     const experience = this.props.experience.map(exp => (
       <tr key={exp._id}>
         <td>{exp.company}</td>
-        <td>{exp.title}</td>
-        <td>
+        <td className="hide-on-small">{exp.title}</td>
+        <td className="hide-on-small">
           <Moment format="DD/MM/YYYY">{exp.from}</Moment> -{" "}
           {exp.to === null ? (
             "Now"
@@ -41,8 +41,8 @@ class Experience extends Component {
           <thead>
             <tr>
               <th>Company</th>
-              <th>Title</th>
-              <th>Years</th>
+              <th className="hide-on-small">Title</th>
+              <th className="hide-on-small">Years</th>
               <th />
             </tr>
             {experience}

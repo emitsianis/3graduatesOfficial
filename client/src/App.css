@@ -37,3 +37,15 @@ img {
 .form-control::placeholder {
   color: #bbb !important;
 }
+
+@media (max-width: 520px) {
+  .dashboard-btns {
+    display: grid;
+  }
+}
+
+@media (max-width: 475px) {
+  .hide-on-small {
+    display: none;
+  }
+}
