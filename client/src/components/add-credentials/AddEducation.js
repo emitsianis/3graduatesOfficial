@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addEducation } from "../../actions/profileActions";
+import { clearErrors } from "../../actions/errorActions";
 
-const AddEducation = ({ addEducation, history, errors }) => {
+const AddEducation = ({ addEducation, clearErrors, history, errors }) => {
   const [formData, setFormData] = useState({
     school: "",
     degree: "",
@@ -17,6 +18,10 @@ const AddEducation = ({ addEducation, history, errors }) => {
     description: "",
     disabled: false
   });
+
+  useEffect(() => {
+    clearErrors();
+  }, [clearErrors]);
 
   const [toDataDisabled, toggleDisabled] = useState(false);
 
@@ -136,6 +141,7 @@ const AddEducation = ({ addEducation, history, errors }) => {
 
 AddEducation.propTypes = {
   addEducation: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 
@@ -145,5 +151,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addEducation }
+  { addEducation, clearErrors }
 )(withRouter(AddEducation));

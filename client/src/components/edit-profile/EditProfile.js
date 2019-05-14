@@ -7,10 +7,12 @@ import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import InputGroup from "../common/InputGroup";
 import { createProfile, getCurrentProfile } from "../../actions/profileActions";
+import { clearErrors } from "../../actions/errorActions";
 
 const CreateProfile = ({
   createProfile,
   getCurrentProfile,
+  clearErrors,
   profile: { profile, loading },
   errors,
   history
@@ -34,6 +36,7 @@ const CreateProfile = ({
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   useEffect(() => {
+    clearErrors();
     getCurrentProfile();
 
     setFormData({
@@ -67,7 +70,7 @@ const CreateProfile = ({
           ? ""
           : profile.social.instagram
     });
-  }, [getCurrentProfile]);
+  }, [getCurrentProfile, clearErrors]);
 
   const {
     handle,
@@ -279,6 +282,7 @@ const CreateProfile = ({
 CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -290,5 +294,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { createProfile, getCurrentProfile }
+  { createProfile, getCurrentProfile, clearErrors }
 )(withRouter(CreateProfile));

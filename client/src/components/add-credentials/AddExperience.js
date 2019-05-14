@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addExperience } from "../../actions/profileActions";
+import { clearErrors } from "../../actions/errorActions";
 
-const AddExperience = ({ addExperience, history, errors }) => {
+const AddExperience = ({ addExperience, clearErrors, history, errors }) => {
   const [formData, setFormData] = useState({
     company: "",
     title: "",
@@ -17,6 +18,10 @@ const AddExperience = ({ addExperience, history, errors }) => {
     description: "",
     disabled: false
   });
+
+  useEffect(() => {
+    clearErrors();
+  }, [clearErrors]);
 
   const [toDataDisabled, toggleDisabled] = useState(false);
 
@@ -128,6 +133,7 @@ const AddExperience = ({ addExperience, history, errors }) => {
 
 AddExperience.propTypes = {
   addExperience: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 
@@ -137,5 +143,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addExperience }
+  { addExperience, clearErrors }
 )(withRouter(AddExperience));
